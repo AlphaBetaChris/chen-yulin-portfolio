@@ -148,7 +148,7 @@ export const content: Record<Locale, SiteContent> = {
       body:
         '我重视扎实的理论基础，也享受把想法变成可用产品的过程。多门核心课程成绩超过 90 分，数学建模竞赛培养了我从数据和约束中寻找结构的能力；国家级创新项目则让我积累了开发、测试与团队协作经验。未来希望在研究生阶段深入开展人工智能相关科研。',
       details: [
-        { label: '政治面貌', value: '预备党员' },
+        { label: '政治面貌', value: '中共党员' },
         { label: '出生年月', value: '2002.10' },
         { label: '籍贯', value: '四川省阆中市' },
         { label: '当前方向', value: '人工智能与计算机科学' },
@@ -328,7 +328,7 @@ export const content: Record<Locale, SiteContent> = {
       body:
         'I value rigorous foundations as much as the process of turning ideas into useful products. Scores above 90 in several core courses reflect my academic discipline. Mathematical modeling taught me to find structure in data and constraints, while national innovation projects gave me hands-on experience in development, testing, and teamwork. I hope to pursue deeper AI research in graduate study.',
       details: [
-        { label: 'Political status', value: 'Probationary CPC Member' },
+        { label: 'Political status', value: 'CPC Member' },
         { label: 'Born', value: 'October 2002' },
         { label: 'Hometown', value: 'Langzhong, Sichuan' },
         { label: 'Current focus', value: 'AI and Computer Science' },

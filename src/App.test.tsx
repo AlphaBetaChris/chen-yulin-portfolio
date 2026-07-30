@@ -31,6 +31,7 @@ describe('portfolio locale behavior', () => {
     expect(
       screen.queryByRole('heading', { name: '项目经历', level: 2 }),
     ).not.toBeInTheDocument();
+    expect(screen.getByText('CPC Member')).toBeInTheDocument();
     expect(document.documentElement.lang).toBe('en');
     expect(localStorage.getItem('chen-yulin-locale')).toBe('en');
   });
@@ -79,7 +80,7 @@ describe('portfolio content and accessibility', () => {
       screen.getByRole('heading', { name: 'HUG', level: 3 }),
     ).toBeInTheDocument();
     expect(screen.getByText('11 / 72')).toBeInTheDocument();
-    expect(screen.getByText('预备党员')).toBeInTheDocument();
+    expect(screen.getByText('中共党员')).toBeInTheDocument();
     expect(screen.getByText('四川省阆中市')).toBeInTheDocument();
     expect(screen.getByAltText('陈昱霖的肖像')).toBeInTheDocument();
   });
