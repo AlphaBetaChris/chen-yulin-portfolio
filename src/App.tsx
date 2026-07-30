@@ -1,10 +1,31 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { content, type Locale } from './content';
 
 const localeKey = 'chen-yulin-locale';
 const email = 'swucyl@email.swu.edu.cn';
 const phoneDisplay = '166-0137-4718';
 const phoneHref = 'tel:+8616601374718';
+const githubHandle = 'AlphaBetaChris';
+const githubHref = `https://github.com/${githubHandle}`;
+
+function SegmentedCopy({
+  className,
+  segments,
+}: {
+  className: string;
+  segments: string[];
+}) {
+  return (
+    <p className={className}>
+      {segments.map((segment, index) => (
+        <Fragment key={`${index}-${segment}`}>
+          <span className="copy-segment">{segment}</span>
+          {index < segments.length - 1 ? <wbr /> : null}
+        </Fragment>
+      ))}
+    </p>
+  );
+}
 
 function readLocale(): Locale {
   try {
@@ -77,7 +98,10 @@ function App() {
             <p className="eyebrow">{copy.hero.eyebrow}</p>
             <p className="hero-role">{copy.hero.role}</p>
             <h1 id="hero-title">{copy.name}</h1>
-            <p className="hero-tagline">{copy.hero.tagline}</p>
+            <SegmentedCopy
+              className="hero-tagline"
+              segments={copy.hero.tagline}
+            />
             <p className="hero-intro">{copy.hero.intro}</p>
             <div className="hero-actions">
               <a className="text-link text-link-dark" href="#about">
@@ -87,6 +111,15 @@ function App() {
               <a className="text-link" href={`mailto:${email}`}>
                 {copy.hero.secondaryAction}
                 <span aria-hidden="true">→</span>
+              </a>
+              <a
+                className="text-link"
+                href={githubHref}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {copy.contact.githubLabel}
+                <span aria-hidden="true">↗</span>
               </a>
             </div>
           </div>
@@ -124,7 +157,10 @@ function App() {
             <h2>{copy.about.title}</h2>
           </header>
           <div className="section-content about-content">
-            <p className="section-lead">{copy.about.lead}</p>
+            <SegmentedCopy
+              className="section-lead"
+              segments={copy.about.lead}
+            />
             <p className="section-body">{copy.about.body}</p>
             <dl className="profile-details">
               {copy.about.details.map((detail) => (
@@ -207,7 +243,10 @@ function App() {
             <h2>{copy.projects.title}</h2>
           </header>
           <div className="section-content">
-            <p className="section-intro">{copy.projects.intro}</p>
+            <SegmentedCopy
+              className="section-intro"
+              segments={copy.projects.intro}
+            />
             <div className="project-grid">
               {copy.projects.items.map((project, index) => (
                 <article
@@ -265,7 +304,10 @@ function App() {
             <h2>{copy.contact.title}</h2>
           </div>
           <div className="contact-content">
-            <p className="contact-lead">{copy.contact.lead}</p>
+            <SegmentedCopy
+              className="contact-lead"
+              segments={copy.contact.lead}
+            />
             <address>
               <div>
                 <span>{copy.contact.emailLabel}</span>
@@ -274,6 +316,17 @@ function App() {
               <div>
                 <span>{copy.contact.phoneLabel}</span>
                 <a href={phoneHref}>{phoneDisplay}</a>
+              </div>
+              <div>
+                <span>{copy.contact.githubLabel}</span>
+                <a
+                  href={githubHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={copy.contact.githubLabel}
+                >
+                  {githubHandle}
+                </a>
               </div>
             </address>
             <p className="contact-note">{copy.contact.note}</p>

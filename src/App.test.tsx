@@ -95,4 +95,33 @@ describe('portfolio content and accessibility', () => {
       screen.getByRole('link', { name: '166-0137-4718' }),
     ).toHaveAttribute('href', 'tel:+8616601374718');
   });
+
+  it('exposes the verified GitHub profile from the hero and contact area', () => {
+    render(<App />);
+
+    const githubLinks = screen.getAllByRole('link', { name: 'GitHub' });
+
+    expect(githubLinks).toHaveLength(2);
+    for (const link of githubLinks) {
+      expect(link).toHaveAttribute(
+        'href',
+        'https://github.com/AlphaBetaChris',
+      );
+      expect(link).toHaveAttribute('target', '_blank');
+      expect(link).toHaveAttribute('rel', 'noreferrer');
+    }
+  });
+
+  it('keeps Chinese display copy in natural phrase segments', () => {
+    render(<App />);
+
+    for (const phrase of [
+      '与好奇心，',
+      '在竞赛、开发',
+      '与质量保障角色。',
+      '认真解决的问题。',
+    ]) {
+      expect(screen.getByText(phrase)).toHaveClass('copy-segment');
+    }
+  });
 });

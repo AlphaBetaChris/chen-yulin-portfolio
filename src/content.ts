@@ -44,7 +44,7 @@ export interface SiteContent {
   hero: {
     eyebrow: string;
     role: string;
-    tagline: string;
+    tagline: string[];
     intro: string;
     primaryAction: string;
     secondaryAction: string;
@@ -55,7 +55,7 @@ export interface SiteContent {
   about: {
     number: string;
     title: string;
-    lead: string;
+    lead: string[];
     body: string;
     details: Detail[];
   };
@@ -83,7 +83,7 @@ export interface SiteContent {
   projects: {
     number: string;
     title: string;
-    intro: string;
+    intro: string[];
     descriptionLabel: string;
     responsibilityLabel: string;
     items: Project[];
@@ -97,10 +97,11 @@ export interface SiteContent {
   contact: {
     number: string;
     title: string;
-    lead: string;
+    lead: string[];
     note: string;
     emailLabel: string;
     phoneLabel: string;
+    githubLabel: string;
   };
   footer: {
     line: string;
@@ -126,7 +127,7 @@ export const content: Record<Locale, SiteContent> = {
     hero: {
       eyebrow: '计算机科学 · 人工智能 · 实践者',
       role: '西南大学计算机科学与技术专业学生',
-      tagline: '用代码、数学与好奇心，解决真实问题。',
+      tagline: ['用代码、数学', '与好奇心，', '解决真实问题。'],
       intro:
         '我关注人工智能、数学建模与产品开发，喜欢把复杂问题拆解成可以验证、可以落地的方案。',
       primaryAction: '浏览经历',
@@ -143,8 +144,13 @@ export const content: Record<Locale, SiteContent> = {
     about: {
       number: '01',
       title: '关于我',
-      lead:
-        '以计算机科学基础与数理思维为底座，在竞赛、开发和人工智能探索中持续成长。',
+      lead: [
+        '以计算机科学基础',
+        '与数理思维为底座，',
+        '在竞赛、开发',
+        '和人工智能探索中',
+        '持续成长。',
+      ],
       body:
         '我重视扎实的理论基础，也享受把想法变成可用产品的过程。多门核心课程成绩超过 90 分，数学建模竞赛培养了我从数据和约束中寻找结构的能力；国家级创新项目则让我积累了开发、测试与团队协作经验。未来希望在研究生阶段深入开展人工智能相关科研。',
       details: [
@@ -220,7 +226,12 @@ export const content: Record<Locale, SiteContent> = {
     projects: {
       number: '04',
       title: '项目经历',
-      intro: '在文化传播与心理健康两个真实场景中，分别承担开发与质量保障角色。',
+      intro: [
+        '在文化传播与心理健康',
+        '两个真实场景中，',
+        '分别承担开发',
+        '与质量保障角色。',
+      ],
       descriptionLabel: '项目',
       responsibilityLabel: '我的工作',
       items: [
@@ -279,10 +290,16 @@ export const content: Record<Locale, SiteContent> = {
     contact: {
       number: '06',
       title: '联系方式',
-      lead: '欢迎交流人工智能、建模、开发，以及任何值得认真解决的问题。',
+      lead: [
+        '欢迎交流人工智能、',
+        '建模、开发，',
+        '以及任何值得',
+        '认真解决的问题。',
+      ],
       note: '邮件通常是联系我的最佳方式。',
       emailLabel: '邮箱',
       phoneLabel: '电话',
+      githubLabel: 'GitHub',
     },
     footer: {
       line: '以真实经历为底稿，持续更新。',
@@ -306,7 +323,11 @@ export const content: Record<Locale, SiteContent> = {
     hero: {
       eyebrow: 'COMPUTER SCIENCE · AI · BUILDER',
       role: 'Computer Science student at Southwest University',
-      tagline: 'Solving real problems with code, mathematics, and curiosity.',
+      tagline: [
+        'Solving real problems',
+        ' with code, mathematics,',
+        ' and curiosity.',
+      ],
       intro:
         'I explore artificial intelligence, mathematical modeling, and product development, turning complex questions into solutions that can be tested and built.',
       primaryAction: 'Explore my journey',
@@ -323,8 +344,14 @@ export const content: Record<Locale, SiteContent> = {
     about: {
       number: '01',
       title: 'About Me',
-      lead:
-        'Building on computer science fundamentals and mathematical thinking, I keep growing through competitions, development, and AI exploration.',
+      lead: [
+        'Building on computer',
+        ' science fundamentals',
+        ' and mathematical thinking,',
+        ' I keep growing through',
+        ' competitions, development,',
+        ' and AI exploration.',
+      ],
       body:
         'I value rigorous foundations as much as the process of turning ideas into useful products. Scores above 90 in several core courses reflect my academic discipline. Mathematical modeling taught me to find structure in data and constraints, while national innovation projects gave me hands-on experience in development, testing, and teamwork. I hope to pursue deeper AI research in graduate study.',
       details: [
@@ -401,8 +428,12 @@ export const content: Record<Locale, SiteContent> = {
     projects: {
       number: '04',
       title: 'Selected Projects',
-      intro:
-        'Development and quality-assurance work across two real-world contexts: cultural heritage and mental wellbeing.',
+      intro: [
+        'Development and quality-assurance work',
+        ' across two real-world contexts:',
+        ' cultural heritage',
+        ' and mental wellbeing.',
+      ],
       descriptionLabel: 'The project',
       responsibilityLabel: 'My contribution',
       items: [
@@ -467,11 +498,16 @@ export const content: Record<Locale, SiteContent> = {
     contact: {
       number: '06',
       title: 'Contact',
-      lead:
-        'Let’s talk about AI, modeling, development, or any problem worth solving carefully.',
+      lead: [
+        'Let’s talk about AI,',
+        ' modeling, development,',
+        ' or any problem',
+        ' worth solving carefully.',
+      ],
       note: 'Email is usually the best way to reach me.',
       emailLabel: 'Email',
       phoneLabel: 'Phone',
+      githubLabel: 'GitHub',
     },
     footer: {
       line: 'Built from real experience, and always evolving.',
