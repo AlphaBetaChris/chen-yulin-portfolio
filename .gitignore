@@ -2,6 +2,7 @@ node_modules/
 dist/
 tmp/
 .superpowers/
+.worktrees/
 *.tsbuildinfo
 .env
 .env.*
