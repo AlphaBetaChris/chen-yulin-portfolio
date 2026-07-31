@@ -5,22 +5,11 @@ import App from './App';
 
 describe('portfolio locale behavior', () => {
   beforeEach(() => {
-    localStorage.clear();
-    document.documentElement.lang = 'zh-CN';
+    document.documentElement.lang = 'en';
   });
 
-  it('starts in Chinese and switches the whole page to English', async () => {
-    const user = userEvent.setup();
+  it('starts every page load in English', () => {
     render(<App />);
-
-    expect(
-      screen.getByRole('heading', { name: '陈昱霖', level: 1 }),
-    ).toBeInTheDocument();
-    expect(document.documentElement.lang).toBe('zh-CN');
-
-    await user.click(
-      screen.getByRole('button', { name: 'Switch to English' }),
-    );
 
     expect(
       screen.getByRole('heading', { name: 'Yulin Chen', level: 1 }),
@@ -28,17 +17,42 @@ describe('portfolio locale behavior', () => {
     expect(
       screen.getByRole('heading', { name: 'Selected Projects', level: 2 }),
     ).toBeInTheDocument();
-    expect(
-      screen.queryByRole('heading', { name: '项目经历', level: 2 }),
-    ).not.toBeInTheDocument();
-    expect(screen.getByText('CPC Member')).toBeInTheDocument();
     expect(document.documentElement.lang).toBe('en');
-    expect(localStorage.getItem('chen-yulin-locale')).toBe('en');
   });
 
-  it('restores the saved English preference on the first render', () => {
-    localStorage.setItem('chen-yulin-locale', 'en');
+  it('switches the whole page to Chinese for the current session', async () => {
+    const user = userEvent.setup();
+    render(<App />);
 
+    await user.click(
+      screen.getByRole('button', { name: '切换至中文' }),
+    );
+
+    expect(
+      screen.getByRole('heading', { name: '陈昱霖', level: 1 }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: '项目经历', level: 2 }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole('heading', { name: 'Selected Projects', level: 2 }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByText('中共党员')).toBeInTheDocument();
+    expect(document.documentElement.lang).toBe('zh-CN');
+  });
+
+  it('returns to English when the page is loaded again', async () => {
+    const user = userEvent.setup();
+    const firstPage = render(<App />);
+
+    await user.click(
+      screen.getByRole('button', { name: '切换至中文' }),
+    );
+    expect(
+      screen.getByRole('heading', { name: '陈昱霖', level: 1 }),
+    ).toBeInTheDocument();
+
+    firstPage.unmount();
     render(<App />);
 
     expect(
@@ -49,24 +63,20 @@ describe('portfolio locale behavior', () => {
 });
 
 describe('portfolio content and accessibility', () => {
-  beforeEach(() => {
-    localStorage.clear();
-  });
-
   it('renders the complete real portfolio as semantic sections', () => {
     render(<App />);
 
     expect(
-      screen.getByRole('navigation', { name: '主要导航' }),
+      screen.getByRole('navigation', { name: 'Primary navigation' }),
     ).toBeInTheDocument();
 
     for (const heading of [
-      '关于我',
-      '教育背景',
-      '荣誉奖项',
-      '项目经历',
-      '专业技能',
-      '联系方式',
+      'About Me',
+      'Education',
+      'Honors & Awards',
+      'Selected Projects',
+      'Skills & Toolkit',
+      'Contact',
     ]) {
       expect(
         screen.getByRole('heading', { name: heading, level: 2 }),
@@ -74,15 +84,15 @@ describe('portfolio content and accessibility', () => {
     }
 
     expect(
-      screen.getByRole('heading', { name: '寻迹土家', level: 3 }),
+      screen.getByRole('heading', { name: 'Tracing Tujia', level: 3 }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole('heading', { name: 'HUG', level: 3 }),
     ).toBeInTheDocument();
     expect(screen.getByText('11 / 72')).toBeInTheDocument();
-    expect(screen.getByText('中共党员')).toBeInTheDocument();
-    expect(screen.getByText('四川省阆中市')).toBeInTheDocument();
-    expect(screen.getByAltText('陈昱霖的肖像')).toBeInTheDocument();
+    expect(screen.getByText('CPC Member')).toBeInTheDocument();
+    expect(screen.getByText('Langzhong, Sichuan')).toBeInTheDocument();
+    expect(screen.getByAltText('Portrait of Yulin Chen')).toBeInTheDocument();
   });
 
   it('exposes real contact details as actionable links', () => {
@@ -112,8 +122,13 @@ describe('portfolio content and accessibility', () => {
     }
   });
 
-  it('keeps Chinese display copy in natural phrase segments', () => {
+  it('keeps Chinese display copy in natural phrase segments', async () => {
+    const user = userEvent.setup();
     render(<App />);
+
+    await user.click(
+      screen.getByRole('button', { name: '切换至中文' }),
+    );
 
     for (const phrase of [
       '与好奇心，',

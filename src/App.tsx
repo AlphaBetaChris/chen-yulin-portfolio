@@ -1,7 +1,6 @@
 import { Fragment, useEffect, useState } from 'react';
 import { content, type Locale } from './content';
 
-const localeKey = 'chen-yulin-locale';
 const email = 'swucyl@email.swu.edu.cn';
 const phoneDisplay = '166-0137-4718';
 const phoneHref = 'tel:+8616601374718';
@@ -27,28 +26,14 @@ function SegmentedCopy({
   );
 }
 
-function readLocale(): Locale {
-  try {
-    return localStorage.getItem(localeKey) === 'en' ? 'en' : 'zh';
-  } catch {
-    return 'zh';
-  }
-}
-
 function App() {
-  const [locale, setLocale] = useState<Locale>(readLocale);
+  const [locale, setLocale] = useState<Locale>('en');
   const copy = content[locale];
 
   useEffect(() => {
     document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en';
     document.title =
       locale === 'zh' ? '陈昱霖 · 个人主页' : 'Yulin Chen · Portfolio';
-
-    try {
-      localStorage.setItem(localeKey, locale);
-    } catch {
-      // The page remains usable when storage is unavailable.
-    }
   }, [locale]);
 
   const toggleLocale = () => {
