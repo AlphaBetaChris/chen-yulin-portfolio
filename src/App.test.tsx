@@ -89,10 +89,24 @@ describe('portfolio content and accessibility', () => {
     expect(
       screen.getByRole('heading', { name: 'HUG', level: 3 }),
     ).toBeInTheDocument();
-    expect(screen.getByText('11 / 72')).toBeInTheDocument();
+    expect(screen.getByText('7 / 72')).toBeInTheDocument();
     expect(screen.getByText('CPC Member')).toBeInTheDocument();
     expect(screen.getByText('Langzhong, Sichuan')).toBeInTheDocument();
     expect(screen.getByAltText('Portrait of Yulin Chen')).toBeInTheDocument();
+  });
+
+  it('shows the updated major ranking consistently in both languages', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    expect(screen.getByText('7 / 72')).toBeInTheDocument();
+    expect(screen.getByText('7 / 72 (Top 10%)')).toBeInTheDocument();
+    expect(screen.queryByText(/11 \/ 72/)).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: '切换至中文' }));
+
+    expect(screen.getByText('7 / 72（前 10%）')).toBeInTheDocument();
+    expect(screen.queryByText(/11 \/ 72/)).not.toBeInTheDocument();
   });
 
   it('exposes real contact details as actionable links', () => {
