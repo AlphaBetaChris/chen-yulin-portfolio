@@ -17,6 +17,18 @@ describe('portfolio locale behavior', () => {
     expect(
       screen.getByRole('heading', { name: 'Selected Projects', level: 2 }),
     ).toBeInTheDocument();
+    expect(
+      screen.queryByRole('heading', { name: '项目经历', level: 2 }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByText('CPC Member')).toBeInTheDocument();
+    expect(screen.getByText('7 / 72 (Top 10%)')).toBeInTheDocument();
+    expect(screen.getByText('4.0 / 5.0')).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'SWU Guide', level: 3 }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Provisional admission through the recommendation-based pathway/),
+    ).toBeInTheDocument();
     expect(document.documentElement.lang).toBe('en');
   });
 
@@ -87,7 +99,10 @@ describe('portfolio content and accessibility', () => {
       screen.getByRole('heading', { name: 'Tracing Tujia', level: 3 }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole('heading', { name: 'HUG', level: 3 }),
+      screen.getByRole('heading', { name: 'SWU Guide', level: 3 }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: 'Yunzhifu Poverty Alleviation Platform', level: 3 }),
     ).toBeInTheDocument();
     expect(screen.getByText('7 / 72')).toBeInTheDocument();
     expect(screen.getByText('CPC Member')).toBeInTheDocument();
@@ -107,6 +122,18 @@ describe('portfolio content and accessibility', () => {
 
     expect(screen.getByText('7 / 72（前 10%）')).toBeInTheDocument();
     expect(screen.queryByText(/11 \/ 72/)).not.toBeInTheDocument();
+    expect(screen.getByText('4.0 / 5.0')).toBeInTheDocument();
+    expect(
+      screen.getByRole('heading', { name: '云智扶精准扶贫信息化平台', level: 3 }),
+    ).toBeInTheDocument();
+    expect(screen.getByText('7 / 72')).toBeInTheDocument();
+    expect(screen.getByText('4.0 / 5.0')).toBeInTheDocument();
+    expect(
+      screen.getAllByText(/已获四川大学网络空间安全学院硕士研究生推免拟录取/),
+    ).toHaveLength(2);
+    expect(screen.getByText('中共党员')).toBeInTheDocument();
+    expect(screen.getByText('四川省阆中市')).toBeInTheDocument();
+    expect(screen.getByAltText('陈昱霖的肖像')).toBeInTheDocument();
   });
 
   it('exposes real contact details as actionable links', () => {
@@ -147,7 +174,7 @@ describe('portfolio content and accessibility', () => {
     for (const phrase of [
       '与好奇心，',
       '在竞赛、开发',
-      '与质量保障角色。',
+      '与测试交付。',
       '认真解决的问题。',
     ]) {
       expect(screen.getByText(phrase)).toHaveClass('copy-segment');

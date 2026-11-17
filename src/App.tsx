@@ -172,6 +172,7 @@ function App() {
                 </div>
                 <time>{copy.education.period}</time>
               </div>
+              <p className="section-body">{copy.education.admission}</p>
               <dl className="education-facts">
                 <div>
                   <dt>{copy.education.rankingLabel}</dt>
@@ -215,7 +216,7 @@ function App() {
                     <h3>{award.title}</h3>
                     <p>{award.result}</p>
                   </div>
-                  <time>{award.date}</time>
+                  {award.date && <time>{award.date}</time>}
                 </li>
               ))}
             </ol>

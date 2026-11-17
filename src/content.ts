@@ -65,6 +65,7 @@ export interface SiteContent {
     school: string;
     major: string;
     period: string;
+    admission: string;
     rankingLabel: string;
     ranking: string;
     gpaLabel: string;
@@ -129,7 +130,7 @@ export const content: Record<Locale, SiteContent> = {
       role: '西南大学计算机科学与技术专业学生',
       tagline: ['用代码、数学', '与好奇心，', '解决真实问题。'],
       intro:
-        '我关注人工智能、数学建模与产品开发，喜欢把复杂问题拆解成可以验证、可以落地的方案。',
+        '我关注 AI 应用、数学建模与产品开发，已有 RAG 问答、多模态识别和跨端联调实践，已获四川大学网络空间安全学院硕士研究生推免拟录取，拟于 2027 年入学。',
       primaryAction: '浏览经历',
       secondaryAction: '联系我',
       portraitAlt: '陈昱霖的肖像',
@@ -137,9 +138,9 @@ export const content: Record<Locale, SiteContent> = {
     },
     stats: [
       { value: '7 / 72', label: '专业排名 · 前 10%' },
-      { value: '3.91', label: '平均绩点 · 5.0 制' },
-      { value: '7', label: '奖项与荣誉' },
-      { value: '2', label: '国家级创新项目' },
+      { value: '4.0', label: '平均绩点 · 5.0 制' },
+      { value: '8', label: '奖项与荣誉' },
+      { value: '3', label: '项目实践' },
     ],
     about: {
       number: '01',
@@ -152,12 +153,12 @@ export const content: Record<Locale, SiteContent> = {
         '持续成长。',
       ],
       body:
-        '我重视扎实的理论基础，也享受把想法变成可用产品的过程。多门核心课程成绩超过 90 分，数学建模竞赛培养了我从数据和约束中寻找结构的能力；国家级创新项目则让我积累了开发、测试与团队协作经验。未来希望在研究生阶段深入开展人工智能相关科研。',
+        '我重视计算机与数理基础，也享受把想法变成可用产品的过程。作为数学建模竞赛队长，我协调任务分工，使用 Python 对比粒子群、模拟退火和差分进化策略，完成参数搜索、结果分析与复现实验。在校园导览、精准扶贫平台和文化研学项目中，我积累了 AI 应用、跨端开发和测试交付经验。两年部队服役经历也培养了我的纪律意识、责任心与团队协作能力。',
       details: [
         { label: '政治面貌', value: '中共党员' },
         { label: '出生年月', value: '2002.10' },
         { label: '籍贯', value: '四川省阆中市' },
-        { label: '当前方向', value: '人工智能与计算机科学' },
+        { label: '当前方向', value: 'AI 应用与计算机科学' },
       ],
     },
     education: {
@@ -165,20 +166,21 @@ export const content: Record<Locale, SiteContent> = {
       title: '教育背景',
       school: '西南大学',
       major: '计算机科学与技术',
-      period: '2023 — 至今',
+      period: '2023 — 2027（预计）',
+      admission: '已获四川大学网络空间安全学院硕士研究生推免拟录取，拟于 2027 年入学。',
       rankingLabel: '专业排名',
       ranking: '7 / 72（前 10%）',
       gpaLabel: '平均绩点',
-      gpa: '3.91 / 5.0',
+      gpa: '4.0 / 5.0',
       languageLabel: '英语水平',
       language: 'CET-4',
       coursesLabel: '核心课程',
       courses: [
+        '数据结构 · 90',
         '高等数学 · 91 / 93',
         '数据库原理 · 92',
         '数字电路 · 91',
         '离散数学 · 90',
-        '线性代数 · 89',
       ],
     },
     honors: {
@@ -202,9 +204,9 @@ export const content: Record<Locale, SiteContent> = {
           date: '2025.11',
         },
         {
-          title: '全国大学生创新创业大赛',
-          result: '校赛铜奖',
-          date: '2025.06',
+          title: '西南大学“含弘杯”大学生创业计划竞赛',
+          result: '银奖',
+          date: '',
         },
         {
           title: '美国大学生数学建模竞赛（MCM/ICM）',
@@ -221,37 +223,51 @@ export const content: Record<Locale, SiteContent> = {
           result: '2023—2024 学年',
           date: '2024.12',
         },
+        {
+          title: '西南大学优秀学生干部',
+          result: '综合荣誉',
+          date: '',
+        },
       ],
     },
     projects: {
       number: '04',
       title: '项目经历',
       intro: [
-        '在文化传播与心理健康',
-        '两个真实场景中，',
-        '分别承担开发',
-        '与质量保障角色。',
+        '从智能校园导览',
+        '到精准扶贫与文化研学，',
+        '参与 AI 应用、跨端开发',
+        '与测试交付。',
       ],
       descriptionLabel: '项目',
       responsibilityLabel: '我的工作',
       items: [
         {
+          title: 'SWU Guide 智能校园导览系统',
+          role: '核心开发成员 · RAG 与多模态',
+          description:
+            '面向校园咨询与游览的一体化移动应用，覆盖智能问答、路线导航和拍照识别，串联“问答—选点—导航”操作流程。',
+          responsibility:
+            '负责校园资料清洗、文本切分、向量检索和提示词编排，整合校园知识库与联网搜索，支持多轮咨询、地点别名匹配和上下文指代。打通 Flutter 客户端与 Python AI 服务，组合 CLIP 与 Qwen-VL 实现建筑识别和图文讲解，并参与知识库校验、日志排查、iOS 适配与跨模块联调。',
+          tags: ['RAG', 'CLIP / Qwen-VL', 'Flutter / Python', '跨端联调'],
+        },
+        {
+          title: '云智扶精准扶贫信息化平台',
+          role: '项目开发成员',
+          description:
+            '面向精准扶贫业务建设用户端与管理端，覆盖项目申报、材料审核、信息公示和诉求反馈。',
+          responsibility:
+            '基于 Spring Boot、MySQL、Vue 与 HarmonyOS 参与页面开发、接口联调和异常排查，处理材料上传、参数校验与状态同步问题。',
+          tags: ['Spring Boot', 'MySQL', 'Vue', 'HarmonyOS'],
+        },
+        {
           title: '寻迹土家',
           role: '国家级大学生创新创业项目 · 主要开发者',
           description:
-            '聚焦渝东南土家文化传承，融合教育、文旅与科技，构建“文化 + 教育 + 旅游”三位一体研学模式，推动民族文化公益事业与乡村振兴。',
+            '围绕研学课程、活动展示和内容运营建设微信小程序，支撑土家文化内容的线上展示与持续维护。',
           responsibility:
-            '负责线上数字化平台（小程序端）的前后端开发与维护，完成用户交互界面、内容展示和数据管理模块，并持续进行功能迭代与性能优化。',
-          tags: ['微信小程序', '前后端开发', '界面设计', '性能优化'],
-        },
-        {
-          title: 'HUG',
-          role: '国家级大学生创新创业项目 · 核心成员',
-          description:
-            '依托西南大学心理学科资源，研发基于虚拟现实技术的负性情绪调适软件，以沉浸式空间和数字人互动缓解压力与焦虑。',
-          responsibility:
-            '负责 VR 交互场景的功能测试、用例设计、回归测试与缺陷追踪，保障产品质量与用户体验。',
-          tags: ['VR', '软件测试', '用例设计', '缺陷追踪'],
+            '负责前后端开发、页面交互与数据管理，完成接口联调、功能测试、缺陷修复及展示版本交付。',
+          tags: ['微信小程序', '前后端开发', '功能测试', '版本交付'],
         },
       ],
     },
@@ -263,27 +279,27 @@ export const content: Record<Locale, SiteContent> = {
         {
           title: '编程语言',
           description:
-            '熟练使用 Python、C / C++，具备良好的代码规范与工程实践能力。',
+            '熟悉 Python、C / C++、SQL，掌握数据结构、算法与数据库基础，具备独立编码和问题定位能力。',
         },
         {
           title: '数学与建模',
           description:
-            '具备高等数学、线性代数和离散数学基础，有全国与国际数学建模竞赛经验。',
+            '具备高等数学、线性代数和离散数学基础，有全国与国际数学建模竞赛经验，实践过粒子群、模拟退火与差分进化优化策略。',
         },
         {
           title: '开发与测试',
           description:
-            '熟悉微信小程序开发流程与前后端协作，掌握功能测试、回归测试和缺陷管理。',
+            '了解 Spring Boot、Vue、Flutter、HarmonyOS 与微信小程序开发，熟悉 MySQL、REST API、接口联调和功能测试。',
         },
         {
-          title: 'AI 工具',
+          title: 'AI 应用',
           description:
-            '熟练使用 ChatGPT、Claude、Gemini 辅助代码编写、文献调研、数据分析与问题求解。',
+            '具备 RAG、多轮对话和多模态应用实践，熟悉文本切分、向量检索、提示词设计及模型接口调用。',
         },
         {
           title: '工具与平台',
           description:
-            '熟悉 Git、LaTeX，了解 Linux 基本操作与常用开发环境配置。',
+            '熟悉 Git 及 Linux 基本操作，能够使用 ChatGPT、Claude 等 AI 工具辅助资料检索、代码实现、调试排错和文档整理。',
         },
       ],
     },
@@ -329,7 +345,7 @@ export const content: Record<Locale, SiteContent> = {
         ' and curiosity.',
       ],
       intro:
-        'I explore artificial intelligence, mathematical modeling, and product development, turning complex questions into solutions that can be tested and built.',
+        'I build AI applications with experience in RAG, multimodal recognition, and cross-platform integration. I have received provisional admission through the recommendation-based pathway to a master’s program at Sichuan University’s School of Cyber Science and Engineering, with entry planned for 2027.',
       primaryAction: 'Explore my journey',
       secondaryAction: 'Get in touch',
       portraitAlt: 'Portrait of Yulin Chen',
@@ -337,9 +353,9 @@ export const content: Record<Locale, SiteContent> = {
     },
     stats: [
       { value: '7 / 72', label: 'Major rank · Top 10%' },
-      { value: '3.91', label: 'GPA · 5.0 scale' },
-      { value: '7', label: 'Honors and awards' },
-      { value: '2', label: 'National innovation projects' },
+      { value: '4.0', label: 'GPA · 5.0 scale' },
+      { value: '8', label: 'Honors and awards' },
+      { value: '3', label: 'Selected projects' },
     ],
     about: {
       number: '01',
@@ -353,12 +369,12 @@ export const content: Record<Locale, SiteContent> = {
         ' and AI exploration.',
       ],
       body:
-        'I value rigorous foundations as much as the process of turning ideas into useful products. Scores above 90 in several core courses reflect my academic discipline. Mathematical modeling taught me to find structure in data and constraints, while national innovation projects gave me hands-on experience in development, testing, and teamwork. I hope to pursue deeper AI research in graduate study.',
+        'I value computer science and mathematical foundations alongside building useful products. As a mathematical modeling team leader, I coordinated tasks and implemented particle swarm optimization, simulated annealing, and differential evolution in Python for parameter search, result analysis, and reproducibility experiments. Campus navigation, poverty alleviation, and cultural education projects have given me experience in AI applications, cross-platform development, testing, and delivery. Two years of military service strengthened my discipline, sense of responsibility, and teamwork.',
       details: [
         { label: 'Political status', value: 'CPC Member' },
         { label: 'Born', value: 'October 2002' },
         { label: 'Hometown', value: 'Langzhong, Sichuan' },
-        { label: 'Current focus', value: 'AI and Computer Science' },
+        { label: 'Current focus', value: 'AI Applications and Computer Science' },
       ],
     },
     education: {
@@ -366,20 +382,21 @@ export const content: Record<Locale, SiteContent> = {
       title: 'Education',
       school: 'Southwest University',
       major: 'B.S. in Computer Science and Technology',
-      period: '2023 — Present',
+      period: '2023 — 2027 (expected)',
+      admission: 'Provisional admission through the recommendation-based pathway to a master’s program at Sichuan University’s School of Cyber Science and Engineering. Entry planned for 2027.',
       rankingLabel: 'Major rank',
       ranking: '7 / 72 (Top 10%)',
       gpaLabel: 'GPA',
-      gpa: '3.91 / 5.0',
+      gpa: '4.0 / 5.0',
       languageLabel: 'English',
       language: 'CET-4',
       coursesLabel: 'Selected coursework',
       courses: [
+        'Data Structures · 90',
         'Calculus · 91 / 93',
         'Database Systems · 92',
         'Digital Circuits · 91',
         'Discrete Mathematics · 90',
-        'Linear Algebra · 89',
       ],
     },
     honors: {
@@ -404,9 +421,9 @@ export const content: Record<Locale, SiteContent> = {
           date: 'Nov 2025',
         },
         {
-          title: 'China International College Students’ Innovation Competition',
-          result: 'University Bronze Award',
-          date: 'Jun 2025',
+          title: 'Southwest University “Hanhong Cup” Business Plan Competition',
+          result: 'Silver Award',
+          date: '',
         },
         {
           title: 'Mathematical Contest in Modeling (MCM/ICM)',
@@ -423,42 +440,57 @@ export const content: Record<Locale, SiteContent> = {
           result: '2023–2024 Academic Year',
           date: 'Dec 2024',
         },
+        {
+          title: 'Southwest University Outstanding Student Leader',
+          result: 'Student leadership recognition',
+          date: '',
+        },
       ],
     },
     projects: {
       number: '04',
       title: 'Selected Projects',
       intro: [
-        'Development and quality-assurance work',
-        ' across two real-world contexts:',
-        ' cultural heritage',
-        ' and mental wellbeing.',
+        'AI applications',
+        ' and cross-platform development',
+        ' across campus navigation,',
+        ' poverty alleviation,',
+        ' and cultural education.',
       ],
       descriptionLabel: 'The project',
       responsibilityLabel: 'My contribution',
       items: [
         {
+          title: 'SWU Guide',
+          role: 'Core Developer · RAG & Multimodal AI',
+          description:
+            'An integrated campus guide app covering conversational Q&A, route navigation, and photo recognition, connecting answers to place selection and navigation.',
+          responsibility:
+            'Built data cleaning, text chunking, vector retrieval, and prompt orchestration workflows combining campus knowledge and web search for multi-turn questions, place aliases, and contextual references. Integrated the Flutter client with Python AI services and combined CLIP with Qwen-VL for building recognition and illustrated explanations. Contributed to knowledge-base validation, log analysis, iOS adaptation, and cross-module integration.',
+          tags: ['RAG', 'CLIP / Qwen-VL', 'Flutter / Python', 'Integration'],
+        },
+        {
+          title: 'Yunzhifu Poverty Alleviation Platform',
+          role: 'Development Team Member',
+          description:
+            'A user-facing and administrative platform for targeted poverty alleviation, covering project applications, document review, public notices, and feedback.',
+          responsibility:
+            'Contributed to page development, API integration, and troubleshooting with Spring Boot, MySQL, Vue, and HarmonyOS, addressing document uploads, parameter validation, and state synchronization.',
+          tags: ['Spring Boot', 'MySQL', 'Vue', 'HarmonyOS'],
+        },
+        {
           title: 'Tracing Tujia',
           role: 'National Innovation Project · Primary Developer',
           description:
-            'A culture, education, and tourism initiative for preserving Tujia heritage in southeastern Chongqing through immersive study programs, cultural products, and a digital platform.',
+            'A WeChat mini program supporting study courses, activity showcases, and content operations for the online presentation and maintenance of Tujia cultural resources.',
           responsibility:
-            'Developed and maintained the mini-program platform across the front and back end, building user interactions, content presentation, and data-management modules while iterating on features and performance.',
+            'Developed the front end, back end, page interactions, and data management. Completed API integration, functional testing, defect fixes, and delivery of a demonstration version.',
           tags: [
             'WeChat Mini Program',
             'Full-stack',
-            'Interface Design',
-            'Optimization',
+            'Functional Testing',
+            'Delivery',
           ],
-        },
-        {
-          title: 'HUG',
-          role: 'National Innovation Project · Core Member',
-          description:
-            'A VR-based negative-emotion regulation product developed with Southwest University psychology resources, using immersive environments and digital-human interaction to ease stress and anxiety.',
-          responsibility:
-            'Designed and executed functional tests for VR interactions, including test cases, regression testing, and defect tracking to protect product quality and user experience.',
-          tags: ['Virtual Reality', 'Software Testing', 'Test Design', 'QA'],
         },
       ],
     },
@@ -471,27 +503,27 @@ export const content: Record<Locale, SiteContent> = {
         {
           title: 'Programming',
           description:
-            'Proficient in Python and C / C++, with disciplined coding practices and engineering awareness.',
+            'Familiar with Python, C / C++, and SQL, with foundations in data structures, algorithms, and databases and experience in independent implementation and debugging.',
         },
         {
           title: 'Mathematics & Modeling',
           description:
-            'Strong foundations in calculus, linear algebra, and discrete mathematics, backed by national and international modeling competitions.',
+            'Foundations in calculus, linear algebra, and discrete mathematics, with national and international modeling experience and practical work in particle swarm optimization, simulated annealing, and differential evolution.',
         },
         {
           title: 'Development & Testing',
           description:
-            'Familiar with WeChat mini-program development, front-end/back-end collaboration, functional testing, regression testing, and defect management.',
+            'Working knowledge of Spring Boot, Vue, Flutter, HarmonyOS, and WeChat mini-program development, with experience in MySQL, REST APIs, integration, and functional testing.',
         },
         {
-          title: 'AI Tools',
+          title: 'AI Applications',
           description:
-            'Fluent with ChatGPT, Claude, and Gemini for coding, literature research, data analysis, and structured problem solving.',
+            'Hands-on experience with RAG, multi-turn conversations, and multimodal applications, including text chunking, vector retrieval, prompt design, and model API integration.',
         },
         {
           title: 'Tools & Platforms',
           description:
-            'Comfortable with Git and LaTeX, with working knowledge of Linux and common development environments.',
+            'Familiar with Git and basic Linux operations. Use ChatGPT, Claude, and other AI tools for research, implementation, troubleshooting, and documentation.',
         },
       ],
     },
